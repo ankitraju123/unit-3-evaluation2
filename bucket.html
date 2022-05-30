@@ -7,15 +7,42 @@
     <title>Document</title>
   </head>
 
-  <style></style>
+  <style>
+
+    #bucket{
+      margin-top: 50px;
+      display: flex;
+      height: 500px;
+      width: 100%;
+      flex-wrap: wrap;
+      
+      justify-content: space-around;
+    }
+    #card{
+      height: 550px;
+      width: 30%;
+      
+    }
+
+    #image{
+      height: 400px;
+      width: 100%;
+    }
+    #coffee_count{
+      margin-left: 1400px;
+    }
+  </style>
 
   <body>
     <div id="total-div">
-      <h3 id="">
+      <h3 id="coffee_count">
         <!--Show bucket total here, do not add anything only Total value. Not even "Total - 1200Rs" but like this "1200" -->
       </h3>
     </div>
-    <div id="">
+    <div id="bucket">
+     
+     
+     
       <!--Show all coffee added to bucket here-->
       <!-- add an remove button to each coffee so that you can remove that item from bucket, give the button HTML id as 'remove_coffee' -->
     </div>
@@ -23,3 +50,50 @@
     <!-- checkout link  -->
   </body>
 </html>
+<script>
+
+let data=JSON.parse(localStorage.getItem("coffee"))
+// console.log(data.length)
+let count=data.length
+document.getElementById("coffee_count").innerText=count
+
+
+function append(data){
+  let container=document.getElementById("bucket")
+
+  container.innerHTML=null
+
+  data.forEach(function(el,index){
+
+    let card=document.createElement("div")
+    card.setAttribute("id","card")
+
+    let p=document.createElement("p")
+    p.innerText=el.title
+
+    let image=document.createElement("img")
+    image.src=el.image
+    image.setAttribute("id","image")
+
+    let price=document.createElement("p")
+    price.innerText=el.price
+ 
+    var del=document.createElement("button")
+del.innerText="Delete"
+del.setAttribute("id","remove")
+del.addEventListener("click",function(){
+console.log(index)
+data.splice(index,1)
+// console.log(added)
+// displaydata(data)
+document.querySelector("#coffee_count").innerText=data.length
+})
+
+    card.append(p,image,price,del)
+
+    container.append(card)
+  })
+}
+
+append(data)
+</script>

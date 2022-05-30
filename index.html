@@ -56,8 +56,8 @@ async function getdata(){
   let res=await fetch(url)
 
   let data=await res.json()
-append(data)
-console.log(data)
+append(data.menu.data)
+console.log(data.menu.data)
   
 
 }
@@ -69,9 +69,25 @@ function append(data){
 
   data.forEach(function(el){
     let p=document.createElement("p")
-    p.innerText=el.Title
+    p.innerText=el.title
 
-    container.append(p)
+    let image=document.createElement("img")
+    image.src=el.image
+
+    let price=document.createElement("p")
+    price.innerText=el.price
+ 
+    let bucket=document.createElement("button")
+    bucket.innerText="add"
+    bucket.addEventListener("click",function(){
+localStorage.setItem("coffee",JSON.stringify(data))
+
+window.location.href="bucket.html"
+    })
+
+    
+
+    container.append(p,image,price,bucket)
   })
 }
 

@@ -6,12 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout</title>
   </head>
+<style>
 
+#order-form{
+height:300px;
+width: 200px;
+border: 1px solid;
+margin: auto;
+
+}
+
+
+  #form{
+    height:500px;
+    width:200px;
+  
+    text-align: center;
+    display:block;
+  }
+</style>
   <body>
     <div id="order-form">
       <!--Add your form html element here-->
       <!--In form, give #name,#number and #address as HTML id's to relevant input elements -->
       <!-- confirm button with id "confirm" -->
+
+     <form id="form" onsubmit="debouncing(event)">
+       <input type="text" placeholder="name" id="name">
+       <input type="number" placeholder="number" id="number">
+       <input type="text" placeholder="address" id="address">
+       <input type="submit" value="confirm">
+     </form>
+
     </div>
   </body>
 </html>
+<script>
+
+let id;
+
+function debouncing(e){
+e.preventDefault()
+// console.log("fuck")
+
+
+}
+
+
+</script>
